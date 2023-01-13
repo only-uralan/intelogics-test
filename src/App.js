@@ -1,49 +1,26 @@
-import { Table } from "antd";
-import { useSelector } from "react-redux";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
 import "./App.css";
+import "leaflet/dist/leaflet.css";
+import TableComponent from "./components/Table/Table";
+import MapComponent from "./components/Map/Map";
+import { useSelector, useDispatch } from "react-redux";
+import { tableClick } from "./redux/State";
 
 function App() {
   const apps = useSelector((state) => state.applications.applications);
-  const columns = [
-    {
-      title: "Номер заявки",
-      dataIndex: "key",
-      key: "key",
-    },
-    {
-      title: "Координаты ОТ lat",
-      dataIndex: "latFrom",
-      key: "latFrom",
-    },
-    {
-      title: "Координаты ОТ lng",
-      dataIndex: "lngFrom",
-      key: "lngFrom",
-    },
-    {
-      title: "Координаты ДО lng",
-      dataIndex: "latTo",
-      key: "latTo",
-    },
-    {
-      title: "Координаты ДО lng",
-      dataIndex: "lngTo",
-      key: "lngTo",
-    },
-  ];
-  const position = [59.84660399, 30.29496392];
+  const routeCoordinates = useSelector(
+    (state) => state.applications.routeCoordinates
+  );
+  const markerCoordinates = useSelector(
+    (state) => state.applications.markerCoordinates
+  );
+  const dispatch = useDispatch();
   return (
     <div className="App">
-      <div className="table">
-        <Table dataSource={apps} columns={columns} />
-      </div>
-      <div className="leaflet-container">
-        <MapContainer center={position} zoom={13}>
-          <TileLayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" />
-        </MapContainer>
-      </div>
+      <TableComponent apps={apps} tableClick={tableClick} dispatch={dispatch} />
+      <MapComponent
+        routeCoordinates={routeCoordinates}
+        markerCoordinates={markerCoordinates}
+      />
     </div>
   );
 }

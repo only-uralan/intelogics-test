@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   display: flex;
+  padding: 16px;
 }
 
 .App-logo {
@@ -36,13 +37,6 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-.table {
-	margin: 16px;
-	border: 1px #4a4c4f solid ;
-	border-radius: 4px;
-	width: 50%;
 }
 
 .leaflet-container {
