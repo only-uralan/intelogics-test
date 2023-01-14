@@ -3,7 +3,7 @@ import { getRouteCoordinates, getMarkersCoordinates } from "./State";
 import PolylineUtil from "polyline-encoded";
 import { getPolyline } from "../api/api";
 
-export function* workGetPolyline(event) {
+export function* workGetCoordinates(event) {
   const polyline = yield call(() => getPolyline(event));
   const formattedPolyline = yield polyline.json();
   const formattedFullPolyline = PolylineUtil.decode(
@@ -20,7 +20,7 @@ export function* workGetPolyline(event) {
 }
 
 export function* watchClickSaga() {
-  yield takeEvery("applications/tableClick", workGetPolyline);
+  yield takeEvery("applications/tableClick", workGetCoordinates);
 }
 export default function* rootSaga() {
   yield watchClickSaga();
