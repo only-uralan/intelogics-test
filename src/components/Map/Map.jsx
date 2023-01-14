@@ -13,35 +13,21 @@ function SetBoundsRectangles({ markerCoordinates }) {
 }
 
 const MapComponent = ({ routeCoordinates, markerCoordinates }) => {
+  const icon = new Icon({
+    iconUrl: MarkerIcon,
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+  });
   return (
     <div className="leaflet-container">
       <MapContainer
         center={markerCoordinates[0]}
         zoom={12}
         bounds={markerCoordinates}
-        scrollWheelZoom={false}
       >
         <TileLayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" />
-        <Marker
-          position={markerCoordinates[0]}
-          icon={
-            new Icon({
-              iconUrl: MarkerIcon,
-              iconSize: [25, 41],
-              iconAnchor: [12, 41],
-            })
-          }
-        ></Marker>
-        <Marker
-          position={markerCoordinates[1]}
-          icon={
-            new Icon({
-              iconUrl: MarkerIcon,
-              iconSize: [25, 41],
-              iconAnchor: [12, 41],
-            })
-          }
-        ></Marker>
+        <Marker position={markerCoordinates[0]} icon={icon}></Marker>
+        <Marker position={markerCoordinates[1]} icon={icon}></Marker>
         <Polyline positions={routeCoordinates} bounds={markerCoordinates} />
         <SetBoundsRectangles markerCoordinates={markerCoordinates} />
       </MapContainer>

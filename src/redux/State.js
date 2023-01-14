@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const ApplicationsSlice = createSlice({
   name: "applications",
   initialState: {
-    applications: [
+    defaultCoordinates: [
       {
         key: 1,
         latFrom: 59.84660399,
@@ -44,22 +44,21 @@ export const ApplicationsSlice = createSlice({
       [59.84660399, 30.29496392],
       [59.82934196, 30.42423701],
     ],
-    isLoading: false,
   },
   reducers: {
     getRouteCoordinates: (state, action) => {
       state.routeCoordinates = action.payload;
     },
-    getMarkersCoordinates: (state, action) => {
-      state.markerCoordinates = action.payload;
-    },
-    tableClick: (state) => {
-      state.isLoading = true;
+    getMarkerCoordinates: (state, action) => {
+      state.markerCoordinates = [
+        [action.payload.latFrom, action.payload.lngFrom],
+        [action.payload.latTo, action.payload.lngTo],
+      ];
     },
   },
 });
 
-export const { getRouteCoordinates, getMarkersCoordinates, tableClick } =
+export const { getRouteCoordinates, getMarkerCoordinates } =
   ApplicationsSlice.actions;
 
 export default ApplicationsSlice.reducer;
