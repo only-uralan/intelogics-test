@@ -4,13 +4,16 @@ import PolylineUtil from "polyline-encoded";
 import { getPolyline } from "../HTTP-services/api";
 
 export function* workGetCoordinates(event) {
-  console.log(event);
-  const polyline = yield call(() => getPolyline(event));
-  const formattedPolyline = PolylineUtil.decode(
-    polyline.data.routes[0].geometry
-  );
-
-  yield put(getRouteCoordinates(formattedPolyline));
+  try {
+    const polyline = yield call(() => getPolyline(event));
+    const formattedPolyline = PolylineUtil.decode(
+      polyline.data.routes[0].geometry
+    );
+    yield put(getRouteCoordinates(formattedPolyline));
+  } catch (error) {
+    alert(`${error.response.data.code}
+${error.response.data.message}`);
+  }
 }
 
 export function* watchClickSaga() {
