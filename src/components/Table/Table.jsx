@@ -1,6 +1,6 @@
 import React from "react";
 import { Table } from "antd";
-import "./Table.css";
+import "./Table.scss";
 import { columns } from "./Columns";
 
 const TableComponent = ({ apps, getMarkerCoordinates, dispatch }) => {

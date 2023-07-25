@@ -1,7 +1,6 @@
 import "./App.css";
-import "leaflet/dist/leaflet.css";
-import TableComponent from "./components/Table/Table";
-import MapComponent from "./components/Map/Map";
+import Table from "./components/Table/Table";
+import Map from "./components/Map/Map";
 import { useSelector, useDispatch } from "react-redux";
 import { getMarkerCoordinates } from "./redux/State";
 
@@ -16,12 +15,12 @@ function App() {
   const dispatch = useDispatch();
   return (
     <div className="App">
-      <TableComponent
+      <Table
         apps={apps}
         getMarkerCoordinates={getMarkerCoordinates}
         dispatch={dispatch}
       />
-      <MapComponent
+      <Map
         routeCoordinates={routeCoordinates}
         markerCoordinates={markerCoordinates}
       />

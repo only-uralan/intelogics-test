@@ -1,7 +1,7 @@
 import { takeEvery, call, put } from "redux-saga/effects";
 import { getRouteCoordinates } from "./State";
 import PolylineUtil from "polyline-encoded";
-import { getPolyline } from "../api/api";
+import { getPolyline } from "../HTTP-services/api";
 
 export function* workGetCoordinates(event) {
   const polyline = yield call(() => getPolyline(event));
