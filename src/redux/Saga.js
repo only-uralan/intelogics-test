@@ -1,16 +1,16 @@
 import { takeEvery, call, put } from "redux-saga/effects";
-import { getRouteCoordinates } from "./State";
+import { getRouteCoordinates } from "./reducers/app-reducer";
 import PolylineUtil from "polyline-encoded";
 import { getPolyline } from "../HTTP-services/api";
 
 export function* workGetCoordinates(event) {
+  console.log(event);
   const polyline = yield call(() => getPolyline(event));
-  const formattedPolyline = yield polyline.json();
-  const formattedFullPolyline = PolylineUtil.decode(
-    formattedPolyline.routes[0].geometry
+  const formattedPolyline = PolylineUtil.decode(
+    polyline.data.routes[0].geometry
   );
 
-  yield put(getRouteCoordinates(formattedFullPolyline));
+  yield put(getRouteCoordinates(formattedPolyline));
 }
 
 export function* watchClickSaga() {

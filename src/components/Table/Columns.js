@@ -1,27 +1,22 @@
 export const columns = [
   {
-    title: "Номер заявки",
+    title: "Маршрут",
     dataIndex: "key",
     key: "key",
   },
   {
-    title: "Координаты ОТ lat",
-    dataIndex: "latFrom",
-    key: "latFrom",
+    title: "Точка 1 (lat, lng)",
+    dataIndex: "start",
+    key: "start",
   },
   {
-    title: "Координаты ОТ lng",
-    dataIndex: "lngFrom",
-    key: "lngFrom",
+    title: "Точка 2 (lat, lng)",
+    dataIndex: "mid",
+    key: "mid",
   },
   {
-    title: "Координаты ДО lng",
-    dataIndex: "latTo",
-    key: "latTo",
-  },
-  {
-    title: "Координаты ДО lng",
-    dataIndex: "lngTo",
-    key: "lngTo",
+    title: "Точка 3 (lat, lng)",
+    dataIndex: "end",
+    key: "end",
   },
 ];

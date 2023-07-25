@@ -9,6 +9,7 @@ const TableComponent = ({ apps, getMarkerCoordinates, dispatch }) => {
       <Table
         dataSource={apps}
         columns={columns}
+        pagination={false}
         rowSelection={{
           type: "radio",
           onSelect: (record) => {

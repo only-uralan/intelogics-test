@@ -21,17 +21,27 @@ const MapComponent = ({ routeCoordinates, markerCoordinates }) => {
   });
   return (
     <div className="leaflet-container">
-      <MapContainer
-        center={markerCoordinates[0]}
-        zoom={12}
-        bounds={markerCoordinates}
-      >
-        <TileLayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" />
-        <Marker position={markerCoordinates[0]} icon={icon}></Marker>
-        <Marker position={markerCoordinates[1]} icon={icon}></Marker>
-        <Polyline positions={routeCoordinates} bounds={markerCoordinates} />
-        <SetBoundsRectangles markerCoordinates={markerCoordinates} />
-      </MapContainer>
+      {markerCoordinates.length > 0 ? (
+        <MapContainer
+          center={markerCoordinates[0]}
+          zoom={12}
+          bounds={markerCoordinates}
+        >
+          <TileLayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" />
+          <Marker position={markerCoordinates[0]} icon={icon}></Marker>
+          <Marker position={markerCoordinates[1]} icon={icon}></Marker>
+          <Polyline positions={routeCoordinates} bounds={markerCoordinates} />
+          <SetBoundsRectangles markerCoordinates={markerCoordinates} />
+        </MapContainer>
+      ) : (
+        <MapContainer
+          center={[59.84660399, 30.29496392]}
+          zoom={13}
+          scrollWheelZoom={false}
+        >
+          <TileLayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" />
+        </MapContainer>
+      )}
     </div>
   );
 };
